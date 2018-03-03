@@ -24,6 +24,7 @@ describe("HasOptions", (): void => {
             }
             const decorated: any = new DecoratedClass();
             decorated.should.have.property("options");
+            decorated.options.should.have.property("defaults");
         });
     });
 });
