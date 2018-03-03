@@ -76,6 +76,19 @@ describe("HasOptions", (): void => {
             decorated.resetOptions();
             decorated.options.one.should.equal("two");
         });
+        it("should handle missing options", (): void => {
+            @HasOptions()
+            class DecoratedClass {
+                constructor() {
+                    // do nothing
+                }
+            }
+            const decorated: any = new DecoratedClass();
+            delete decorated.options;
+            should.not.exist(decorated.options);
+            decorated.resetOptions();
+            should.exist(decorated.options);
+        });
     });
 });
 /* tslint:enable:max-classes-per-file */
