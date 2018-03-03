@@ -8,6 +8,10 @@ export function HasOptions(): ClassDecorator {
                 super(...args);
                 this.options = this.options || { defaults: {} };
             }
+
+            public updateOption(optionName: string, value: any) {
+                this.options[optionName] = value;
+            }
         };
     };
 }
