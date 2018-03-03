@@ -4,7 +4,7 @@
   "description": "A utility package to build CLI apps",
   "main": "index.js",
   "scripts": {
-    "test": "nyc mocha 'test/**/*.spec.ts'"
+    "test": "nyc mocha"
   },
   "author": "CJ Harries <cj@wizardsoftheweb.pro> (https://wizardsoftheweb.pro/)",
   "license": "ISC",
