@@ -72,5 +72,35 @@ describe("Option", (): void => {
             should.equal(decorated.options.defaults.three, null);
         });
     });
+    describe("The factory should handle any setter", (): void => {
+        it("should handle an explicit value", (): void => {
+            const setter = (value: any) => {
+                return "seven";
+            };
+            class DecoratedClass {
+                @Option("four", setter)
+                public three: string;
+            }
+            const decorated: any = new DecoratedClass();
+            decorated.should.have.property("options");
+            decorated.options.should.have.property("setters");
+            decorated.options.setters.should.have.property("three");
+            decorated.options.setters.three.should.equal(setter);
+        });
+        it("should handle a missing value", (): void => {
+            class DecoratedClass {
+                @Option()
+                public three: string;
+            }
+            const decorated: any = new DecoratedClass();
+            decorated.should.have.property("options");
+            decorated.options.should.have.property("setters");
+            decorated.options.setters.should.have.property("three");
+            should.equal(
+                decorated.options.setters.three("one"),
+                "one",
+            );
+        });
+    });
 });
 /* tslint:enable:max-classes-per-file */
