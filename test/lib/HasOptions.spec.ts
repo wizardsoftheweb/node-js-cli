@@ -51,5 +51,31 @@ describe("HasOptions", (): void => {
             decorated.options.one.should.equal("three");
         });
     });
+
+    describe("The factory must provide resetOptions", (): void => {
+        it("should expose resetOptions", (): void => {
+            @HasOptions()
+            class DecoratedClass {
+                constructor() {
+                    // do nothing
+                }
+            }
+            const decorated: any = new DecoratedClass();
+            decorated.should.respondTo("resetOptions");
+        });
+        it("should wipe options", (): void => {
+            @HasOptions()
+            class DecoratedClass {
+                public options = { defaults: { one: "two" }, one: "three" };
+                constructor() {
+                    // do nothing
+                }
+            }
+            const decorated: any = new DecoratedClass();
+            decorated.options.one.should.equal("three");
+            decorated.resetOptions();
+            decorated.options.one.should.equal("two");
+        });
+    });
 });
 /* tslint:enable:max-classes-per-file */
