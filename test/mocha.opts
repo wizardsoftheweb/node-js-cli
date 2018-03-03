@@ -4,3 +4,4 @@
 --require ts-node/register
 --bail
 --colors
+test/**/*.spec.ts
