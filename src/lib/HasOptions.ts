@@ -6,7 +6,10 @@ export function HasOptions(): ClassDecorator {
             public options: IOptions;
             constructor(...args: any[]) {
                 super(...args);
-                this.options = this.options || { defaults: {} };
+                this.options = this.options || {
+                    defaults: {},
+                    setters: {},
+                };
             }
 
             public updateOption(optionName: string, value: any) {
