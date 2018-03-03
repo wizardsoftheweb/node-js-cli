@@ -74,7 +74,15 @@ describe("HasOptions", (): void => {
         it("should wipe options", (): void => {
             @HasOptions()
             class DecoratedClass {
-                public options = { defaults: { one: "two" }, one: "three" };
+                public options = {
+                    defaults: { one: "two" },
+                    setters: {
+                        one: (value: any) => {
+                            return value;
+                        },
+                    },
+                    one: "three"
+                };
                 constructor() {
                     // do nothing
                 }
