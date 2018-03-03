@@ -13,7 +13,7 @@ export function HasOptions(): ClassDecorator {
             }
 
             public updateOption(optionName: string, value: any) {
-                this.options[optionName] = value;
+                this.options[optionName] = this.options.setters[optionName](value);
             }
 
             public resetOptions() {
