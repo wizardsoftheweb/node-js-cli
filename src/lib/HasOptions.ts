@@ -14,7 +14,10 @@ export function HasOptions(): ClassDecorator {
             }
 
             public resetOptions() {
-                const defaults = this.options.defaults || {};
+                const defaults = (
+                    this.options.defaults
+                    || /* istanbul ignore next: doesn't happen */ {}
+                );
                 this.options = { defaults };
                 for (const key in defaults) {
                     /* istanbul ignore else: convention */
