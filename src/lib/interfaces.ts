@@ -4,7 +4,7 @@
  */
 export type ClassDecorator = <T extends { new(...args: any[]): {} }>(constructor: T) => T;
 
-export interface Options {
+export interface IOptions {
     defaults: {
         [key: string]: any;
     };
