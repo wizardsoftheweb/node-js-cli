@@ -12,6 +12,22 @@ export function HasOptions(): ClassDecorator {
             public updateOption(optionName: string, value: any) {
                 this.options[optionName] = value;
             }
+
+            public resetOptions() {
+                let defaults;
+                if (this.options && this.options.defaults) {
+                    defaults = this.options.defaults;
+                } else {
+                    defaults = {}
+                }
+                this.options = { defaults };
+                for (const key in defaults) {
+                    /* istanbul ignore else: convention */
+                    if (defaults.hasOwnProperty(key)) {
+                        this.options[key] = defaults[key]
+                    }
+                }
+            }
         };
     };
 }
