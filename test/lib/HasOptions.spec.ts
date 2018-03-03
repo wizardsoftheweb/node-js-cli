@@ -40,7 +40,15 @@ describe("HasOptions", (): void => {
         it("should update options", (): void => {
             @HasOptions()
             class DecoratedClass {
-                public options = { defaults: { one: "two" }, one: "two" };
+                public options = {
+                    defaults: { one: "two" },
+                    setters: {
+                        one: (value: any) => {
+                            return value;
+                        },
+                    },
+                    one: "two"
+                };
                 constructor() {
                     // do nothing
                 }
