@@ -1,0 +1,3 @@
+{
+  "extends": "@wizardsoftheweb/nyc-config-typescript"
+}
