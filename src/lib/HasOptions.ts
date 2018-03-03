@@ -6,21 +6,29 @@ export function HasOptions(): ClassDecorator {
             public options: IOptions;
             constructor(...args: any[]) {
                 super(...args);
-                this.options = this.options || { defaults: {} };
+                this.options = this.options || {
+                    defaults: {},
+                    setters: {},
+                };
             }
 
             public updateOption(optionName: string, value: any) {
-                this.options[optionName] = value;
+                this.options[optionName] = this.options.setters[optionName](value);
             }
 
             public resetOptions() {
-                let defaults;
+                let defaults, setters;
                 if (this.options && this.options.defaults) {
                     defaults = this.options.defaults;
                 } else {
                     defaults = {}
                 }
-                this.options = { defaults };
+                if (this.options && this.options.setters) {
+                    setters = this.options.setters;
+                } else {
+                    setters = {}
+                }
+                this.options = { defaults, setters };
                 for (const key in defaults) {
                     /* istanbul ignore else: convention */
                     if (defaults.hasOwnProperty(key)) {
