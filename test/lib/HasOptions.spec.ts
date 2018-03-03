@@ -14,7 +14,7 @@ import { HasOptions } from "../../src/lib/HasOptions";
 // This is a decorator, so we have to test lots of classes.
 /* tslint:disable:max-classes-per-file */
 describe("HasOptions", (): void => {
-    it("The factory should expose winston", (): void => {
+    it("should expose options", (): void => {
         @HasOptions()
         class DecoratedClass {
             constructor() {
@@ -24,6 +24,32 @@ describe("HasOptions", (): void => {
         const decorated: any = new DecoratedClass();
         decorated.should.have.property("options");
         decorated.options.should.have.property("defaults");
+    });
+
+    describe("The factory must provide updateOption", (): void => {
+        it("should expose updateOption", (): void => {
+            @HasOptions()
+            class DecoratedClass {
+                constructor() {
+                    // do nothing
+                }
+            }
+            const decorated: any = new DecoratedClass();
+            decorated.should.respondTo("updateOption");
+        });
+        it("should update options", (): void => {
+            @HasOptions()
+            class DecoratedClass {
+                public options = { defaults: { one: "two" }, one: "two" };
+                constructor() {
+                    // do nothing
+                }
+            }
+            const decorated: any = new DecoratedClass();
+            decorated.options.one.should.equal("two");
+            decorated.updateOption("one", "three");
+            decorated.options.one.should.equal("three");
+        });
     });
 });
 /* tslint:enable:max-classes-per-file */
