@@ -17,13 +17,18 @@ export function HasOptions(): ClassDecorator {
             }
 
             public resetOptions() {
-                let defaults;
+                let defaults, setters;
                 if (this.options && this.options.defaults) {
                     defaults = this.options.defaults;
                 } else {
                     defaults = {}
                 }
-                this.options = { defaults };
+                if (this.options && this.options.setters) {
+                    setters = this.options.setters;
+                } else {
+                    setters = {}
+                }
+                this.options = { defaults, setters };
                 for (const key in defaults) {
                     /* istanbul ignore else: convention */
                     if (defaults.hasOwnProperty(key)) {
