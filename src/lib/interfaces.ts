@@ -8,5 +8,8 @@ export interface IOptions {
     defaults: {
         [key: string]: any;
     };
+    setters: {
+        [key: string]: (value: any) => any;
+    };
     [key: string]: any;
 }
