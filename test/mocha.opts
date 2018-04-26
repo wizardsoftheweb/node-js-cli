@@ -1,5 +1,7 @@
 --recursive
 --reporter spec
 --require source-map-support/register
---compilers ts:ts-node/register
+--require ts-node/register
 --bail
+--colors
+test/**/*.spec.ts
