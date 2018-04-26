@@ -20,6 +20,6 @@ dist
 wizards*.tgz
 **/.binIntegrationTest
 # Personal working files (you might not need these)
-scratch.ts
+scratch.*
 swap-out.log
 README.html
